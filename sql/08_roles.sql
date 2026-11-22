@@ -2,7 +2,7 @@
 -- GYM MANAGEMENT SYSTEM
 -- CSCE 4355 - Database Administration
 -- ============================================================
--- File        : Create 08_roles.sql
+-- File        : 08_roles.sql
 -- Description : Create and assign permissions to specific roles
 -- Database    : gym_management_db
 -- ============================================================
@@ -29,20 +29,19 @@ GRANT USAGE ON SCHEMA scheduling TO Trainer;
 GRANT SELECT ON ALL TABLES IN SCHEMA scheduling TO Trainer;
 GRANT INSERT ON ALL TABLES IN SCHEMA scheduling TO Trainer;
 GRANT UPDATE ON ALL TABLES IN SCHEMA scheduling TO Trainer;
-GRANT DELETE ON ALL TABLES IN SCHEMA scheduling TO Trainer;
 GRANT USAGE ON SCHEMA membership TO Trainer;
 GRANT SELECT ON ALL TABLES IN SCHEMA membership TO Trainer;
-GRANT INSERT ON ALL TABLES IN SCHEMA membership TO Trainer;
-GRANT UPDATE ON ALL TABLES IN SCHEMA membership TO Trainer;
-GRANT DELETE ON ALL TABLES IN SCHEMA membership TO Trainer;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA scheduling TO Trainer;
 
 CREATE ROLE admin NOLOGIN;
+
 GRANT ALL PRIVILEGES ON DATABASE gym_management_db TO admin;
-GRANT ALL PRIVILEGES ON SCHEMA staff, scheduling, membership TO admin;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA staff, scheduling, membership TO admin;
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA staff, scheduling, membership TO admin;
-ALTER DEFAULT PRIVILEGES IN SCHEMA staff, scheduling, membership
+GRANT ALL PRIVILEGES ON SCHEMA staff, scheduling, membership, reporting TO admin;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA staff, scheduling, membership, reporting TO admin;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA staff, scheduling, membership, reporting TO admin;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA staff, scheduling, membership, reporting
 GRANT ALL PRIVILEGES ON TABLES TO admin;
-ALTER DEFAULT PRIVILEGES IN SCHEMA staff, scheduling, membership
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA staff, scheduling, membership, reporting
 GRANT ALL PRIVILEGES ON SEQUENCES TO admin;
